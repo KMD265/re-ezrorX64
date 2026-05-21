@@ -1,3 +1,11 @@
+// re-ezrorX64.cpp - æç®€PEæ¡Œé¢ç¯å¢ƒä¸»ç¨‹åº
+// ä½œè€…: KMD265å’Œ"è±†åŒ…AI"
+// åè®®: MIT License
+// ç¼–è¯‘å™¨: TDM-GCC 4.9.2 x64
+// éœ€è¦ä»¥ä¸‹å‚æ•°: "-Os -s -m64 -std=c++11 -DUNICODE -D_UNICODE","-luuid -lmsimg32 -lgdi32 -limm32 -lole32 -loleaut32 -lwinmm -lgdiplus -std=c++11 -Os -s -lkernel32 -lcomdlg32 -lshlwapi -m64 -lmsimg32"
+// åŠŸèƒ½: æä¾›PEç¯å¢ƒä¸‹çš„å›¾å½¢åŒ–æ¡Œé¢ã€æ–‡ä»¶ç®¡ç†å’Œå›¾æ ‡å¯åŠ¨åŠŸèƒ½
+// ä½“ç§¯: ç¼–è¯‘åçº¦595KBï¼Œæ— ä»»ä½•å¤–éƒ¨ä¾èµ–
+
 #include <Windows.h>
 #include <ShlObj.h>
 #include <shobjidl.h>
@@ -802,12 +810,12 @@ LRESULT CALLBACK FolderWndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPara
                     auto it = g_femtMappings.find(ext);
                     if (it != g_femtMappings.end()) {
                         wstring params = it->second.paramsTemplate;
-                        // ÍêÈ«É¾³ı"-i $.$"Õû¸öÄ£°å×Ö·û´®£¬²»×öÈÎºÎÌæ»»
+                        // å®Œå…¨åˆ é™¤"-i $.$"æ•´ä¸ªæ¨¡æ¿å­—ç¬¦ä¸²ï¼Œä¸åšä»»ä½•æ›¿æ¢
                         size_t dashIPos = params.find(L"-i $.$");
                         if (dashIPos != wstring::npos) {
                             params.erase(dashIPos, 6);
                         }
-                        // ÆäËûÕ¼Î»·ûÈÔÈ»Õı³£´¦Àí
+                        // å…¶ä»–å ä½ç¬¦ä»ç„¶æ­£å¸¸å¤„ç†
                         size_t placeholderPos = params.find(L"$.$");
                         if (placeholderPos != wstring::npos) {
                             params.replace(placeholderPos, 3, selectedItem.fullPath);
@@ -1118,12 +1126,12 @@ LRESULT CALLBACK MainWndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
                     auto it = g_femtMappings.find(ext);
                     if (it != g_femtMappings.end()) {
                         wstring params = it->second.paramsTemplate;
-                        // ÍêÈ«É¾³ı"-i $.$"Õû¸öÄ£°å×Ö·û´®£¬²»×öÈÎºÎÌæ»»
+                        // å®Œå…¨åˆ é™¤"-i $.$"æ•´ä¸ªæ¨¡æ¿å­—ç¬¦ä¸²ï¼Œä¸åšä»»ä½•æ›¿æ¢
                         size_t dashIPos = params.find(L"-i $.$");
                         if (dashIPos != wstring::npos) {
                             params.erase(dashIPos, 6);
                         }
-                        // ÆäËûÕ¼Î»·ûÈÔÈ»Õı³£´¦Àí
+                        // å…¶ä»–å ä½ç¬¦ä»ç„¶æ­£å¸¸å¤„ç†
                         size_t placeholderPos = params.find(L"$.$");
                         if (placeholderPos != wstring::npos) {
                             params.replace(placeholderPos, 3, selectedItem.fullPath);
